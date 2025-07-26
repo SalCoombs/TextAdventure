@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Game 1</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="src/index.js" defer></script>
+    <!-- <script src="sandbox.js"></script> -->
+  </head>
+  <body>
+    <div class="padding flex_box">
+      <div id="text-display" class="display flex_grow display--text"></div>
+      <div class="display display--map">
+        <div id="game-map" class="game_map"></div>
+      </div>
+    </div>
+    <div class="padding">
+      <textarea
+        name="control-box"
+        rows="1"
+        id="control-box"
+        class="control_box display"
+        placeholder="Command..."
+      ></textarea>
+    </div>
+  </body>
+</html>
