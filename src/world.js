@@ -3,7 +3,7 @@ import Tile from "./tile.js";
 import { Treasure } from "./entity.js";
 
 export default class World {
-  constructor(width, height, player, htmlController) {
+  constructor(player, htmlController, width = 18, height = 18) {
     this.width = width;
     this.height = height;
     this.player = player;

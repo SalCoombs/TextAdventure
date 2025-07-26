@@ -19,7 +19,7 @@ function linkObjects() {
   const eventStack = new EventStack();
   const player = new Player();
   const htmlController = new HtmlController();
-  const world = new World(18, 18, player, htmlController);
+  const world = new World(player, htmlController, 18, 18);
   const inputHandler = new InputHandler(
     eventStack,
     htmlController,
