@@ -10,8 +10,6 @@ export default class Game {
     this.eventStack = eventStack;
   }
 
-  init() {}
-
   start() {
     const boundRunGame = runGame.bind(this);
     requestAnimationFrame(boundRunGame);
@@ -24,12 +22,14 @@ export default class Game {
     }
   }
 
+  // This function is used.
   #update() {
     while (!this.eventStack.isEmpty()) {
       this.eventStack.executeTop();
     }
   }
 
+  // This function is also used.
   #render() {
     this.world.render();
   }

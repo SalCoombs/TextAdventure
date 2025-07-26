@@ -1,20 +1,8 @@
 import Entity from "./entity.js";
-import { Treasure } from "./entity.js";
 import Tile from "./tile.js";
+import { Treasure } from "./entity.js";
 
 export default class World {
-  static TREASURE_DISTRIBUTION = 0.05;
-  static moveEntity(entity, x, y) {
-    const tile = getTileAt(entity.x, entity.y);
-    const newTile = getTileAt(x, y);
-
-    entity.x = x;
-    entity.y = y;
-
-    tile.removeEntity(entity);
-    newTile.addEntity(entity, x, y);
-  }
-
   constructor(width, height, player, htmlController) {
     this.width = width;
     this.height = height;
@@ -26,8 +14,38 @@ export default class World {
       Y: 0,
     };
     this.htmlController = htmlController;
-    this.tiles = this.#initTiles(); // Is an array
+    this.tiles = this.#initTiles();
     this.#generateWorld();
+  }
+
+  static TREASURE_DISTRIBUTION = 0.05;
+
+  static moveEntity(entity, x, y) {
+    const tile = getTileAt(entity.x, entity.y);
+    const newTile = getTileAt(x, y);
+
+    entity.x = x;
+    entity.y = y;
+
+    tile.removeEntity(entity);
+    newTile.addEntity(entity, x, y);
+  }
+
+  static moveAdjacent(entity, direction) {
+    switch (direction) {
+      case "up":
+        this.moveEntity(entity, entity.x, entity.y - 1);
+        break;
+      case "down":
+        this.moveEntity(entity, entity.x, entity.y + 1);
+        break;
+      case "left":
+        this.moveEntity(entity, entity.x - 1, entity.y);
+        break;
+      case "right":
+        this.moveEntity(entity, entity.x + 1, entity.y);
+        break;
+    }
   }
 
   render() {
@@ -63,6 +81,20 @@ export default class World {
     return tile;
   }
 
+  #initTiles() {
+    // Cannot use this.tiles until #initTiles has finished running.
+    let tiles = [];
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const tile = new Tile();
+        tile.addEntity(new Entity(tile, x, y));
+        tiles[y * this.width + x] = tile;
+      }
+    }
+
+    return tiles;
+  }
+
   #generateWorld() {
     this.#spawnPlayer();
     this.#spawnTreasure();
@@ -87,20 +119,6 @@ export default class World {
   #getSymbolAtXY(x, y) {
     const tile = this.getTileAt(x, y);
     return tile.getAscii();
-  }
-
-  #initTiles() {
-    // Cannot use this.tiles until #initTiles has finished running.
-    let tiles = [];
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) {
-        const tile = new Tile();
-        tile.addEntity(new Entity(tile, x, y));
-        tiles[y * this.width + x] = tile;
-      }
-    }
-
-    return tiles;
   }
 
   #getRandomTile() {

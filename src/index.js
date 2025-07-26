@@ -12,6 +12,11 @@ import InputHandler from "./inputHandler.js";
 window.addEventListener("load", handleDocumentLoaded);
 
 function handleDocumentLoaded() {
+  const game = linkObjects();
+  game.start();
+}
+
+function linkObjects() {
   const eventStack = new EventStack();
   const player = new Player();
   const htmlController = new HtmlController();
@@ -20,6 +25,5 @@ function handleDocumentLoaded() {
   const inputHandler = new InputHandler(eventStack, htmlController, commandMap);
   htmlController.inputCallback = inputHandler.handle.bind(inputHandler);
 
-  const game = new Game(player, htmlController, world, commandMap, eventStack);
-  game.start();
+  return new Game(player, htmlController, world, commandMap, eventStack);
 }
