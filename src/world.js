@@ -8,8 +8,11 @@ export default class World {
     const tile = getTileAt(entity.x, entity.y);
     const newTile = getTileAt(x, y);
 
+    entity.x = x;
+    entity.y = y;
+
     tile.removeEntity(entity);
-    newTile = getTileAt(x, y);
+    newTile.addEntity(entity, x, y);
   }
 
   constructor(width, height, player, htmlController) {
