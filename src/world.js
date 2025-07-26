@@ -13,16 +13,19 @@ export default class World {
       X: 0,
       Y: 0,
     };
+    this.TREASURE_DISTRIBUTION = 0.1;
     this.htmlController = htmlController;
     this.tiles = this.#initTiles();
     this.#generateWorld();
   }
 
-  static TREASURE_DISTRIBUTION = 0.05;
-
-  static moveEntity(entity, x, y) {
-    const tile = getTileAt(entity.x, entity.y);
-    const newTile = getTileAt(x, y);
+  moveEntity(entity, x, y) {
+    if (y < 0 || y >= this.height || x < 0 || x >= this.width) {
+      this.htmlController.displayText("Can not move out of bounds");
+      return;
+    }
+    const tile = this.getTileAt(entity.x, entity.y);
+    const newTile = this.getTileAt(x, y);
 
     entity.x = x;
     entity.y = y;
@@ -31,21 +34,24 @@ export default class World {
     newTile.addEntity(entity, x, y);
   }
 
-  static moveAdjacent(entity, direction) {
-    switch (direction) {
-      case "up":
-        this.moveEntity(entity, entity.x, entity.y - 1);
-        break;
-      case "down":
-        this.moveEntity(entity, entity.x, entity.y + 1);
-        break;
-      case "left":
-        this.moveEntity(entity, entity.x - 1, entity.y);
-        break;
-      case "right":
-        this.moveEntity(entity, entity.x + 1, entity.y);
-        break;
+  moveAdjacentGen(entity = this.player, direction) {
+    function moveAdjacent() {
+      switch (direction) {
+        case "up":
+          this.moveEntity(entity, entity.x, entity.y - 1);
+          break;
+        case "down":
+          this.moveEntity(entity, entity.x, entity.y + 1);
+          break;
+        case "left":
+          this.moveEntity(entity, entity.x - 1, entity.y);
+          break;
+        case "right":
+          this.moveEntity(entity, entity.x + 1, entity.y);
+          break;
+      }
     }
+    return moveAdjacent.bind(this);
   }
 
   render() {
@@ -101,11 +107,15 @@ export default class World {
   }
 
   #spawnTreasure() {
-    for (const tile of this.tiles) {
+    for (let i = 0; i < this.tiles.length; i++) {
       const shouldHaveTreasure = Math.random();
-      if (shouldHaveTreasure > this.TREASURE_DISTRIBUTION) {
+      const curTile = this.tiles[i];
+      const tileX = i % this.width;
+      const tileY = i / this.width;
+
+      if (shouldHaveTreasure < this.TREASURE_DISTRIBUTION) {
         const level = Math.floor(Math.random() * 3) + 1;
-        tile.addEntity(new Treasure(tile, level));
+        curTile.addEntity(new Treasure(curTile, tileX, tileY, level));
       }
     }
   }

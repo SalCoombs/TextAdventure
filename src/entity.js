@@ -9,7 +9,7 @@ export default class Entity {
 }
 
 export class Treasure extends Entity {
-  constructor(tile, level) {
+  constructor(tile, x, y, level) {
     super(tile, x, y, "o", 9);
     this.level = level;
   }

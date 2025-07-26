@@ -4,7 +4,6 @@ import Player from "./player.js";
 import HtmlController from "./htmlController.js";
 import EventStack from "./eventStack.js";
 import World from "./world.js";
-import CommandMap from "./commandMap.js";
 import InputHandler from "./inputHandler.js";
 
 //Object imports
@@ -21,9 +20,13 @@ function linkObjects() {
   const player = new Player();
   const htmlController = new HtmlController();
   const world = new World(18, 18, player, htmlController);
-  const commandMap = new CommandMap(player, world);
-  const inputHandler = new InputHandler(eventStack, htmlController, commandMap);
+  const inputHandler = new InputHandler(
+    eventStack,
+    htmlController,
+    world,
+    player
+  );
   htmlController.inputCallback = inputHandler.handle.bind(inputHandler);
 
-  return new Game(player, htmlController, world, commandMap, eventStack);
+  return new Game(player, htmlController, world, eventStack);
 }

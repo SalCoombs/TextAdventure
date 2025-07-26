@@ -1,12 +1,8 @@
-import World from "./world.js";
-import EventStack from "./eventStack.js";
-
 export default class Game {
-  constructor(player, htmlController, world, commandMap, eventStack) {
+  constructor(player, htmlController, world, eventStack) {
     this.player = player;
     this.htmlController = htmlController;
     this.world = world;
-    this.commandMap = commandMap;
     this.eventStack = eventStack;
   }
 
