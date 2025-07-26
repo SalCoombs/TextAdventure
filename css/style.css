@@ -1,3 +1,8 @@
+:root {
+  --map-background-color: rgb(169, 255, 255);
+  --map-edge-colour: rgb(148, 255, 148);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -40,7 +45,6 @@ body {
 }
 
 .display--text {
-  background-color: rgb(225, 237, 255);
   white-space: pre-wrap;
 }
 
@@ -59,11 +63,15 @@ body {
   white-space: pre;
 }
 
-/* .gradient_border {
+.gradient_border {
   border: 4px solid transparent;
   border-radius: 4px;
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
-  background-image: linear-gradient(white, white),
+  background-image: radial-gradient(
+      circle at center,
+      var(--map-background-color),
+      var(--map-edge-colour)
+    ),
     radial-gradient(circle farthest-corner, #091399, #ee0979);
-} */
+}
