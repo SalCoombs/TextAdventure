@@ -52,6 +52,7 @@ export default class HtmlController {
     const maxLineLen = Math.floor(this.controlBox.clientWidth / CHAR_WIDTH);
     this.controlBox.maxLength = maxLineLen;
 
-    this.displayText(`Type "Start" and press enter to begin.`);
+    this.displayText(`Tutorial: Use the command bar to move your character.`);
+    this.displayText(`I.E. move (up/down/left/right)`);
   }
 }

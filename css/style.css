@@ -41,7 +41,7 @@ body {
 
 .display--text {
   background-color: rgb(225, 237, 255);
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .control_box {
