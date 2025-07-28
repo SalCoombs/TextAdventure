@@ -1,5 +1,5 @@
 //Class imports
-import Game from "./game.js";
+import GameLoop from "./gameLoop.js";
 import Player from "./player.js";
 import HtmlController from "./htmlController.js";
 import EventStack from "./eventStack.js";
@@ -28,5 +28,5 @@ function linkObjects() {
   );
   htmlController.inputCallback = inputHandler.handle.bind(inputHandler);
 
-  return new Game(player, htmlController, world, eventStack);
+  return new GameLoop(player, htmlController, world, eventStack);
 }

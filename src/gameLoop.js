@@ -1,7 +1,5 @@
-export default class Game {
-  constructor(player, htmlController, world, eventStack) {
-    this.player = player;
-    this.htmlController = htmlController;
+export default class GameLoop {
+  constructor(world, eventStack) {
     this.world = world;
     this.eventStack = eventStack;
   }

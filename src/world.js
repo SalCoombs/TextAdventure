@@ -1,6 +1,7 @@
 import Entity from "./entity.js";
 import Tile from "./tile.js";
 import { Treasure } from "./entity.js";
+import { directions } from "./constants.js";
 
 export default class World {
   constructor(player, htmlController, width = 18, height = 18) {
@@ -37,16 +38,16 @@ export default class World {
   moveAdjacentGen(entity = this.player, direction) {
     function moveAdjacent() {
       switch (direction) {
-        case "up":
+        case directions.UP:
           this.moveEntity(entity, entity.x, entity.y - 1);
           break;
-        case "down":
+        case directions.DOWN:
           this.moveEntity(entity, entity.x, entity.y + 1);
           break;
-        case "left":
+        case directions.LEFT:
           this.moveEntity(entity, entity.x - 1, entity.y);
           break;
-        case "right":
+        case directions.RIGHT:
           this.moveEntity(entity, entity.x + 1, entity.y);
           break;
       }
