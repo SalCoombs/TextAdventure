@@ -1,6 +1,5 @@
 import Entity from "./entity.js";
 import Tile from "./tile.js";
-import { Treasure } from "./entity.js";
 import { directions } from "./constants.js";
 
 export default class World {
@@ -104,21 +103,6 @@ export default class World {
 
   #generateWorld() {
     this.#spawnPlayer();
-    this.#spawnTreasure();
-  }
-
-  #spawnTreasure() {
-    for (let i = 0; i < this.tiles.length; i++) {
-      const shouldHaveTreasure = Math.random();
-      const curTile = this.tiles[i];
-      const tileX = i % this.width;
-      const tileY = i / this.width;
-
-      if (shouldHaveTreasure < this.TREASURE_DISTRIBUTION) {
-        const level = Math.floor(Math.random() * 3) + 1;
-        curTile.addEntity(new Treasure(curTile, tileX, tileY, level));
-      }
-    }
   }
 
   #spawnPlayer() {
