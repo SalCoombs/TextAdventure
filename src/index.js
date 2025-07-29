@@ -28,5 +28,5 @@ function linkObjects() {
   );
   htmlController.inputCallback = inputHandler.handle.bind(inputHandler);
 
-  return new GameLoop(player, htmlController, world, eventStack);
+  return new GameLoop(world, eventStack);
 }
