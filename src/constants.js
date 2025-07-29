@@ -1,7 +1,7 @@
 export const gameMenus = Object.freeze({
   NONE: "none",
   INTERACTION: "interaction",
-  HELP: "HELP",
+  HELP: "help",
 });
 
 export const directions = Object.freeze({
