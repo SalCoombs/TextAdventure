@@ -1,4 +1,4 @@
-export default class EventStack {
+export default class EventQueue {
   constructor() {
     this.head = null;
   }
@@ -6,13 +6,13 @@ export default class EventStack {
   queue(event) {
     const newEvent = new GameEvent(event);
     if (this.head) {
-      newEvent.next = this.head;
+      this.head.next = newEvent;
+    } else {
+      this.head = newEvent;
     }
-
-    this.head = newEvent;
   }
 
-  executeTop() {
+  pop() {
     this.head.event();
     this.head = this.head.next ? this.head : null;
   }
