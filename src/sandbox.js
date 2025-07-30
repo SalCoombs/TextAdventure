@@ -1,11 +1,5 @@
-const myList = [];
-myList.push("Hello");
-myList.push("My");
-myList.push("Name");
-myList.push("Is");
-myList.push("Sal");
-console.log(myList);
+// const regex = /^(\w+)(?:\s+(.+))?$/;
+// const inputString = "very nice";
 
-for (let i = 0; i < myList.length; i++) {
-  console.log(`${myList[i]}`);
-}
+// const match = inputString.match(regex);
+// console.log(match);

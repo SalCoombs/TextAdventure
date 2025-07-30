@@ -19,7 +19,7 @@ export default class GameLoop {
   // This function is used.
   #update() {
     while (!this.eventStack.isEmpty()) {
-      this.eventStack.executeTop();
+      this.eventStack.pop();
     }
   }
 
