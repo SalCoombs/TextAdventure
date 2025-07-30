@@ -1,30 +1,34 @@
 export default class InputHandler {
-  constructor(eventStack, htmlController, world, player) {
+  constructor(eventStack, htmlController, world, player, inputParser) {
     this.eventStack = eventStack;
     this.htmlController = htmlController;
     this.world = world;
     this.player = player;
+    this.inputParser = inputParser;
   }
 
-  handle(rawInput) {
+  handleInput(rawInput) {
     if (!rawInput) return;
     const input = this.#clean(rawInput);
 
-    const matchMove = input.match(/move (up|down|left|right)/);
-    if (!matchMove) {
-      this.htmlController.displayText("handle: Invalid command. No match");
-      return;
-    }
+    this.inputParser.setInput(input);
+    this.inputParser.parseInput();
 
-    const direction = matchMove[1];
-    const moveAction = this.world.moveAdjacentGen(this.player, direction);
+    // const matchMove = input.match(/move (up|down|left|right)/);
+    // if (!matchMove) {
+    //   this.htmlController.displayText("handle: Invalid command. No match");
+    //   return;
+    // }
 
-    if (!moveAction) {
-      this.htmlController.displayText("handle: Invalid command. No action");
-      return;
-    }
+    // const direction = matchMove[1];
+    // const moveAction = this.world.moveAdjacentGen(this.player, direction);
 
-    this.eventStack.queue(moveAction);
+    // if (!moveAction) {
+    //   this.htmlController.displayText("handle: Invalid command. No action");
+    //   return;
+    // }
+
+    // this.eventStack.queue(moveAction);
   }
 
   #clean(input) {
