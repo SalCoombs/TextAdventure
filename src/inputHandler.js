@@ -13,22 +13,6 @@ export default class InputHandler {
 
     this.inputParser.setInput(input);
     this.inputParser.parseInput();
-
-    // const matchMove = input.match(/move (up|down|left|right)/);
-    // if (!matchMove) {
-    //   this.htmlController.displayText("handle: Invalid command. No match");
-    //   return;
-    // }
-
-    // const direction = matchMove[1];
-    // const moveAction = this.world.moveAdjacentGen(this.player, direction);
-
-    // if (!moveAction) {
-    //   this.htmlController.displayText("handle: Invalid command. No action");
-    //   return;
-    // }
-
-    // this.eventStack.queue(moveAction);
   }
 
   #clean(input) {

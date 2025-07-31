@@ -28,7 +28,6 @@ export default class InputParser {
 
     for (let i = 0; i < args.length; i++) {
       const argument = args[i];
-      console.log(argument);
       commandObject = commandObject[argument];
       if (typeof commandObject === "function") break;
     }

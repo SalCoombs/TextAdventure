@@ -1,5 +1,6 @@
 import WorldGenerator from "./worldGenerator.js";
 import WorldMovement from "./worldMovement.js";
+import WorldActions from "./worldActions.js";
 
 export default class World {
   constructor(player, htmlController, width = 18, height = 18) {
@@ -19,6 +20,10 @@ export default class World {
 
   moveEntity(entity, x, y) {
     WorldMovement.moveEntity(this, entity, x, y);
+  }
+
+  removeEntity(entity, x, y) {
+    WorldActions.removeEntity(this, entity, x, y);
   }
 
   moveAdjacentGen(direction, entity = this.player) {
