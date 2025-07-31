@@ -6,9 +6,9 @@ import EventQueue from "./eventQueue.js";
 import World from "./world.js";
 import InputHandler from "./inputHandler.js";
 import InputParser from "./inputParser.js";
+import CommandManager from "./commandManager.js";
 
 //Object imports
-import commandMap from "./commandMap.js";
 
 window.addEventListener("load", handleDocumentLoaded);
 
@@ -22,7 +22,12 @@ function linkObjects() {
   const player = new Player();
   const htmlController = new HtmlController();
   const world = new World(player, htmlController, 18, 18);
-  const inputParser = new InputParser(htmlController, commandMap);
+  const commandManager = new CommandManager(world);
+  const inputParser = new InputParser(
+    htmlController,
+    commandManager,
+    eventQueue
+  );
   const inputHandler = new InputHandler(
     eventQueue,
     htmlController,

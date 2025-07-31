@@ -1,9 +1,9 @@
 export default class InputParser {
-  constructor(htmlController, commandMap, eventStack) {
+  constructor(htmlController, commandManager, eventQueue) {
     this.input = "";
     this.htmlController = htmlController;
-    this.commandMap = commandMap;
-    this.eventStack = eventStack;
+    this.commandManager = commandManager;
+    this.eventQueue = eventQueue;
   }
 
   setInput(input) {
@@ -11,13 +11,28 @@ export default class InputParser {
   }
 
   parseInput() {
-    const commandMatch = this.input.match(/^(\w+)(?:\s+(.+))?$/);
-    const commandKey = commandMatch[1];
-    // console.log(commandKey);
-    // console.log(this.commandMap[commandKey]);
-    if (!this.commandMap[commandKey]) {
-      console.error("Parse Input: Unable to find command");
+    const inputMatch = this.input.match(/^(\w+)(?:\s+(.+))?$/);
+    if (!inputMatch) {
+      this.htmlController.displayText("Invalid Input.");
       return;
     }
+
+    const command = inputMatch[1];
+    const args = inputMatch.slice(2);
+
+    let commandObject = this.commandManager.commandMap[command];
+    if (!commandObject) {
+      this.htmlController.displayText("Invalid Command.");
+      return;
+    }
+
+    for (let i = 0; i < args.length; i++) {
+      const argument = args[i];
+      console.log(argument);
+      commandObject = commandObject[argument];
+      if (typeof commandObject === "function") break;
+    }
+
+    this.eventQueue.queue(commandObject);
   }
 }

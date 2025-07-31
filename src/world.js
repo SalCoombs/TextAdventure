@@ -34,7 +34,7 @@ export default class World {
     newTile.addEntity(entity, x, y);
   }
 
-  moveAdjacentGen(entity = this.player, direction) {
+  moveAdjacentGen(direction, entity = this.player) {
     function moveAdjacent() {
       switch (direction) {
         case directions.UP:

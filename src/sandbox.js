@@ -2,4 +2,4 @@
 // const inputString = "very nice";
 
 // const match = inputString.match(regex);
-// console.log(match);
+// match.
