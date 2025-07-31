@@ -13,7 +13,6 @@ export default class World {
       X: 0,
       Y: 0,
     };
-    this.TREASURE_DISTRIBUTION = 0.1;
     this.htmlController = htmlController;
     this.tiles = this.#initTiles();
     this.#generateWorld();
