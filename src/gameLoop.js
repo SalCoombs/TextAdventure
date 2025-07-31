@@ -1,7 +1,7 @@
 export default class GameLoop {
-  constructor(world, eventStack) {
+  constructor(world, eventSystem) {
     this.world = world;
-    this.eventStack = eventStack;
+    this.eventSystem = eventSystem;
   }
 
   start() {
@@ -18,9 +18,7 @@ export default class GameLoop {
 
   // This function is used.
   #update() {
-    while (!this.eventStack.isEmpty()) {
-      this.eventStack.pop();
-    }
+    this.eventSystem.emit("move");
   }
 
   // This function is also used.

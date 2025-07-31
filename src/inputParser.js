@@ -1,9 +1,9 @@
 export default class InputParser {
-  constructor(htmlController, commandManager, eventQueue) {
+  constructor(htmlController, commandManager, eventSystem) {
     this.input = "";
     this.htmlController = htmlController;
     this.commandManager = commandManager;
-    this.eventQueue = eventQueue;
+    this.eventSystem = eventSystem;
   }
 
   setInput(input) {
@@ -17,21 +17,20 @@ export default class InputParser {
       return;
     }
 
-    const command = inputMatch[1];
+    const commandStr = inputMatch[1];
     const args = inputMatch.slice(2);
 
-    let commandObject = this.commandManager.commandMap[command];
+    let commandObject = this.commandManager.commandMap[commandStr];
     if (!commandObject) {
       this.htmlController.displayText("Invalid Command.");
       return;
     }
 
-    for (let i = 0; i < args.length; i++) {
-      const argument = args[i];
-      commandObject = commandObject[argument];
+    for (const arg of args) {
+      if (typeof commandObject !== "object") break;
+      commandObject = commandObject[arg];
       if (typeof commandObject === "function") break;
     }
-
-    this.eventQueue.queue(commandObject);
+    this.eventSystem.on(commandStr, commandObject);
   }
 }

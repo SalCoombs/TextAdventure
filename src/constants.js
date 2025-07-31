@@ -16,3 +16,8 @@ export const entitySymbols = Object.freeze({
   TREASURE: "o",
   BLANK: " ",
 });
+
+export const listenerPostActions = Object.freeze({
+  DEFAULT: "default",
+  PERSISTANT: "persistant",
+});

@@ -2,7 +2,7 @@
 import GameLoop from "./gameLoop.js";
 import Player from "./player.js";
 import HtmlController from "./htmlController.js";
-import EventQueue from "./eventQueue.js";
+import EventSystem from "./eventSystem.js";
 import World from "./world.js";
 import InputHandler from "./inputHandler.js";
 import InputParser from "./inputParser.js";
@@ -18,7 +18,7 @@ function handleDocumentLoaded() {
 }
 
 function linkObjects() {
-  const eventQueue = new EventQueue();
+  const eventSystem = new EventSystem();
   const player = new Player();
   const htmlController = new HtmlController();
   const world = new World(player, htmlController, 18, 18);
@@ -26,16 +26,10 @@ function linkObjects() {
   const inputParser = new InputParser(
     htmlController,
     commandManager,
-    eventQueue
+    eventSystem
   );
-  const inputHandler = new InputHandler(
-    eventQueue,
-    htmlController,
-    world,
-    player,
-    inputParser
-  );
+  const inputHandler = new InputHandler(inputParser);
   htmlController.inputCallback = inputHandler.handleInput.bind(inputHandler);
 
-  return new GameLoop(world, eventQueue);
+  return new GameLoop(world, eventSystem);
 }

@@ -1,9 +1,5 @@
 export default class InputHandler {
-  constructor(eventStack, htmlController, world, player, inputParser) {
-    this.eventStack = eventStack;
-    this.htmlController = htmlController;
-    this.world = world;
-    this.player = player;
+  constructor(inputParser) {
     this.inputParser = inputParser;
   }
 
