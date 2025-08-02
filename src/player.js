@@ -1,16 +1,17 @@
+import Item from "./item.js";
 import Entity from "./entity.js";
-import { entitySymbols } from "./constants.js";
+import { entitySymbols, itemNames } from "./constants.js";
 
 export default class Player extends Entity {
-  constructor(eventQueue) {
+  constructor(eventSystem) {
     super(null, null, null, entitySymbols.PLAYER, 10);
-    this.eventQueue = eventQueue;
+    this.eventSystem = eventSystem;
     this.inventory = {};
+
+    this.eventSystem.on("dig", this.addItem);
   }
 
   addItem(item) {
-    inventory[item.name] = item;
+    this.inventory[item.name] = item;
   }
-
-  dig() {}
 }

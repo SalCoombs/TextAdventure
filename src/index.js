@@ -19,8 +19,8 @@ function handleDocumentLoaded() {
 
 function linkObjects() {
   const eventSystem = new EventSystem();
-  const player = new Player();
-  const htmlController = new HtmlController();
+  const player = new Player(eventSystem);
+  const htmlController = new HtmlController(eventSystem);
   const world = new World(player, htmlController, 18, 18);
   const commandManager = new CommandManager(world);
   const inputParser = new InputParser(

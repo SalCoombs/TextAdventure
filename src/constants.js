@@ -21,3 +21,7 @@ export const listenerPostActions = Object.freeze({
   DEFAULT: "default",
   PERSISTANT: "persistant",
 });
+
+export const itemNames = Object.freeze({
+  SEED: "seed",
+});

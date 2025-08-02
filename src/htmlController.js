@@ -1,5 +1,5 @@
 export default class HtmlController {
-  constructor(inputCallback) {
+  constructor(eventSystem) {
     this.textDisplay = document.getElementById("text-display");
     if (!this.textDisplay) {
       console.error("Failed to find the game display");
@@ -16,7 +16,8 @@ export default class HtmlController {
       return;
     }
 
-    this.inputCallback = inputCallback;
+    this.inputCallback = null;
+    this.eventSystem = eventSystem;
 
     this.#initHtml();
   }

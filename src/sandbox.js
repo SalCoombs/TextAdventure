@@ -11,19 +11,19 @@
 // }, 0);
 // console.log(result);
 
-class eventSystem {
-  constructor() {
-    listeners = {};
-  }
+// class eventSystem {
+//   constructor() {
+//     listeners = {};
+//   }
 
-  on(type, callback, isPersistant = false) {
-    this.listeners[type] ??= [];
-    this.listeners[type].push();
-  }
-}
+//   on(type, callback, isPersistant = false) {
+//     this.listeners[type] ??= [];
+//     this.listeners[type].push();
+//   }
+// }
 
-class GameEvent {
-  constructor(callback, isPersistant) {
-    this.callback = callback;
-  }
-}
+// class GameEvent {
+//   constructor(callback, isPersistant) {
+//     this.callback = callback;
+//   }
+// }
