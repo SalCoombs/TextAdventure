@@ -31,8 +31,6 @@ export default class InputParser {
       commandObject = commandObject[arg];
       if (typeof commandObject === "function") break;
     }
-    // this.eventSystem.on(commandStr, commandObject);
-
-    this.eventSystem.emit(commandObject);
+    this.eventSystem.on(commandStr, commandObject);
   }
 }
